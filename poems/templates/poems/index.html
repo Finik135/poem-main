@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>Поетичний портал</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .theme-purple  { --bg: #3B0B69; --text: #E8DFFB; }
+    .theme-sky     { --bg: #E0F7FA; --text: #004D60; }
+    .theme-dark    { --bg: #0D0D0D; --text: #EEEEEE; }
+    .theme-light   { --bg: #FFFFFF; --text: #2B2B2B; }
+    .theme-forest  { --bg: #1C352D; --text: #E8F5E9; }
+    .theme-salad   { --bg: #DFFFD6; --text: #295E1E; }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      transition: background-color 0.4s, color 0.4s;
+    }
+  </style>
+</head>
+<body class="theme-{{ theme }} min-h-screen flex flex-col items-center justify-center p-8">
+
+  <h1 class="text-4xl font-bold mb-6 text-center">🎨 Обери свою тему</h1>
+
+  <div class="flex flex-wrap justify-center gap-4">
+
+    <a href="{% url 'set_theme' 'purple' %}" class="bg-purple-700 text-white px-5 py-3 rounded-xl hover:scale-105 transition">
+      Фіолетова
+    </a>
+
+    <a href="{% url 'set_theme' 'sky' %}" class="bg-sky-400 text-black px-5 py-3 rounded-xl hover:scale-105 transition">
+      Блакитна
+    </a>
+
+    <a href="{% url 'set_theme' 'dark' %}" class="bg-black text-white px-5 py-3 rounded-xl hover:scale-105 transition">
+      Чорна
+    </a>
+
+    <a href="{% url 'set_theme' 'light' %}" class="bg-white text-black border border-gray-300 px-5 py-3 rounded-xl hover:scale-105 transition">
+      Біла
+    </a>
+
+    <a href="{% url 'set_theme' 'forest' %}" class="bg-green-900 text-white px-5 py-3 rounded-xl hover:scale-105 transition">
+      Лісова
+    </a>
+
+    <a href="{% url 'set_theme' 'salad' %}" class="bg-lime-300 text-green-900 px-5 py-3 rounded-xl hover:scale-105 transition">
+      Салатова
+    </a>
+
+  </div>
+
+  <p class="mt-10 text-center text-sm">© {{ now|date:"Y" }} Поетичний портал</p>
+
+</body>
+</html>
+<body class="theme-{{ theme }}">
+<a href="{% url 'set_theme' 'dark' %}">Темна тема</a>

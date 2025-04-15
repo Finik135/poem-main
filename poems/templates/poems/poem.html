@@ -1,0 +1,43 @@
+{% extends "poems/base.html" %}
+{% load static %}
+{% block head %}
+    <link rel="stylesheet" href="{% static 'poems/css/poem_detail.css' %}">
+{% endblock %}
+{% block content %}
+    <div class="container">
+        <div class="poem-title">{{ poem.name }}</div>
+        <div class="poem-text">{{ poem.text }}</div>
+        <div class="poem-author">Author: {{ poem.author }}</div>
+
+        <form method="POST" class="review-form">
+            {% csrf_token %}
+            <textarea name="text" placeholder="Enter your review" rows="4" cols="50"></textarea>
+            <br>
+            <div>
+                <input type="text" name="author_id" value="{{user.username}}" hidden>
+            </div>
+            <div class="button-submit-container">
+                <button type="submit">Submit Review</button>
+            </div>
+        </form>
+
+        {% for message in messages %}
+            {{ message }}
+        {% endfor %}
+
+        <div class="reviews">
+            <h2>Reviews</h2>
+            {% for review in reviews %}
+                <div class="review">
+                    <p class="review-text">{{ review.text }}</p>
+                    <p class="review-author">Author: {{ review.author_id }}</p>
+                </div>
+
+                {% empty %}
+                <p>No reviews yet.</p>
+            {% endfor %}
+        </div>
+
+        <a href="{% url 'poems:home' %}" class="back-button">Back to Home</a>
+    </div>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends "poems/base.html" %}
+{% load static %}
+
+{% block head%}
+    <link rel="stylesheet" href="{% static 'poems/css/poem_create.css' %}">
+{% endblock %}
+{% block content %}
+<div class="container">
+        <h1>Create New Poem</h1>
+        <form method="post">
+            {% csrf_token %}
+            <div>
+                <label>Name:</label>
+                {{ form.name }}
+            </div>
+
+            <div>
+                <label>Text:</label>
+                {{ form.text }}
+            </div>
+
+            <div>
+                <input type="text" name="author" value="{{user.username}}" hidden>
+            </div>
+
+            <div class="button-container">
+                <button type="submit">Create</button>
+                <a href="{% url 'poems:home' %}" class="home-button">Home</a>
+            </div>
+        </form>
+
+    </div>
+{% endblock %}

@@ -1,0 +1,113 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+.poem-title {
+    font-size: 2em;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #007bff;
+}
+
+.poem-text {
+    font-size: 1.2em;
+    margin-bottom: 30px;
+    line-height: 1.6;
+    text-align: justify;
+}
+
+.poem-author {
+    font-weight: bold;
+    text-align: right;
+    font-size: 1rem;
+    padding: 10px;
+}
+
+.back-button {
+    display: block;
+    width: 150px;
+    margin: 20px auto 0;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    text-align: center;
+    transition: background-color 0.3s;
+}
+
+.back-button:hover {
+    background-color: #0056b3;
+}
+
+.button-submit-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.reviews {
+    margin-top: 30px;
+}
+
+.review {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+}
+
+.review-text {
+    font-size: 1.1em;
+    line-height: 0.2;
+    padding: 0px;
+}
+
+.review-author {
+    font-size: 0.9em;
+    color: #777;
+}
+
+.review-form {
+    margin-top: 20px;
+}
+
+.review-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    resize: vertical;
+}
+
+.review-form button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.review-form button:hover {
+    background-color: #0056b3;
+}

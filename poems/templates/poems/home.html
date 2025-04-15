@@ -1,0 +1,43 @@
+{% extends "poems/base.html" %}
+{% load static %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'poems/css/poems.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="poems-container">
+        <div class="headline">
+            List of Poems
+        </div>
+
+        {% if user.is_authenticated %}
+            <div class="create-poem-button">
+                <a href="{% url 'poems:poem_create' %}" class="btn">Create new poem</a>
+            </div>
+        {% endif %}
+        {% for poem in poems %}
+            <div class="poem">
+                <a href="{% url 'poems:poem_detail' pk=poem.pk %}">{{ poem.name }}</a>
+                <div class="poem-author">Author: {{ poem.author }}</div>
+            </div>
+        {% endfor %}
+    </div>
+
+    {% if poems.paginator.num_pages > 1 %}
+        <div class="pagination">
+            {% if poems.has_previous %}
+                <a href="?page={{ poems.previous_page_number }}">Previous</a>
+            {% else %}
+                <span class="disabled">Previous</span>
+            {% endif %}
+
+            {% if poems.has_next %}
+                <a href="?page={{ poems.next_page_number }}">Next</a>
+            {% else %}
+                <span class="disabled"><Next></Next></span>
+            {% endif %}
+        </div>
+    {% endif %}
+
+{% endblock %}

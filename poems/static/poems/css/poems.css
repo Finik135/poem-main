@@ -1,0 +1,77 @@
+.headline{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.2em;
+}
+
+.poems-container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 15px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.poem {
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 13px;
+}
+.poem a {
+   text-decoration: none;
+}
+.poem p {
+    margin-bottom: 10px;
+}
+.poem-author {
+    font-weight: bold;
+    text-align: right;
+    font-size: 1rem;
+    padding: 10px;
+}
+.pagination {
+    position: fixed;
+    bottom: 0;
+    left: 25%;
+    width: 50%;
+    background-color: #f9f9f9;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.pagination a {
+    color: #007bff;
+    text-decoration: none;
+    border: 1px solid #007bff;
+    border-radius: 5px;
+    padding: 8px 16px;
+    transition: all 0.3s ease;
+}
+.pagination a:hover {
+    background-color: #007bff;
+    color: #fff;
+}
+.pagination .disabled {
+    pointer-events: none;
+    color: #999;
+    border-color: #999;
+}
+
+.create-poem-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 40px;
+}
+
+.create-poem-button a{
+    background-color: #003f7f;
+    padding: 10px;
+    border-radius: 10px;
+    color: white;
+    text-decoration: none;
+}

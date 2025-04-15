@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Register</title>
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'users/css/styles.css' %}">
+    </head>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const toggleButton = document.getElementById("toggleTheme");
+        const body = document.body;
+
+        // Перевіряємо збережену тему
+        if (localStorage.getItem("theme") === "dark") {
+            body.classList.add("dark-mode");
+        } else {
+            body.classList.add("light-mode");
+        }
+
+        toggleButton.addEventListener("click", function () {
+            if (body.classList.contains("dark-mode")) {
+                body.classList.replace("dark-mode", "light-mode");
+                localStorage.setItem("theme", "light"); // Збереження вибору
+            } else {
+                body.classList.replace("light-mode", "dark-mode");
+                localStorage.setItem("theme", "dark");
+            }
+        });
+    });
+</script>
+
+    <body>
+        <div class="container">
+            <div class="form-container">
+                <h2>Login</h2>
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label >Username</label>
+                        {{ form.username }}
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        {{ form.password }}
+                    </div>
+                    <button type="submit">Login</button>
+                </form>
+                <a href="{% url 'registration' %}">registration</a>
+                <div>
+                    {% for message in messages %}
+                        {{ message }}
+                    {% endfor %}
+                </div>
+            </div>
+
+        </div>
+    <button id="toggleTheme" class="btn btn-primary">Змінити тему</button>
+
+    </body>
+</html>

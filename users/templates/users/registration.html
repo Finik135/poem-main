@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Register</title>
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'users/css/styles.css' %}">
+    </head>
+
+    <body>
+        <div class="container">
+        <div class="form-container">
+            <h2>Register</h2>
+            <form method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password1">Password</label>
+                    <input type="password" id="password1" name="password1" required>
+                </div>
+                <div class="form-group">
+                    <label for="password2">Confirm Password</label>
+                    <input type="password" id="password2" name="password2" required>
+                </div>
+                <button type="submit">Register</button>
+            </form>
+            <div>
+                <a href="{% url 'authorization' %}">to login page</a>
+            </div>
+            <div>
+                <a href="{% url 'poems:home' %}">back to home page</a>
+            </div>
+
+
+            <div>
+                {% for message in messages %}
+                    {{ message }}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    </body>
+</html>
