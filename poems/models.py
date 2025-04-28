@@ -1,22 +1,31 @@
 from django.db import models
-from django.contrib.auth.models import User
-import datetime
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import User, AbstractUser, Permission, Group
 
-class CustomUser(AbstractUser):
-    ACCOUNT_TYPES = [
-        ('free', 'Free'),
-        ('pro', 'Pro'),
-        ('premium', 'Premium'),
-    ]
-    account_type = models.CharField(
-        max_length=10,
-        choices=ACCOUNT_TYPES,
-        default='free'
-    )
+# class CustomUser(AbstractUser):
+#     ACCOUNT_TYPES = [
+#         ('free', 'Free'),
+#         ('pro', 'Pro'),
+#         ('premium', 'Premium'),
+#     ]
+#     account_type = models.CharField(
+#         max_length=10,
+#         choices=ACCOUNT_TYPES,
+#         default='free'
+#     )
 
 class CustomUser(AbstractUser):
     theme = models.CharField(max_length=20, default="light")
+    groups = models.ManyToManyField(
+        Group,
+        related_name="customuser_groups",  # Add a unique related_name
+        blank=True,
+    )
+    user_permissions = models.ManyToManyField(
+        Permission,
+        related_name="customuser_permissions",  # Add a unique related_name
+        blank=True,
+    )
+    
 
 class Poem(models.Model):
     title = models.CharField(max_length=255, default="Без назви")
@@ -34,7 +43,17 @@ class Poem(models.Model):
         on_delete=models.CASCADE,
         null=True
     )
-
+    
+    ACCOUNT_TYPES = [
+        ('free', 'Free'),
+        ('pro', 'Pro'),
+        ('premium', 'Premium'),
+    ]
+    account_type = models.CharField(
+        max_length=10,
+        choices=ACCOUNT_TYPES,
+        default='free'
+    )
 
     def __str__(self):
         return self.name
