@@ -4,6 +4,18 @@ import datetime
 from django.contrib.auth.models import AbstractUser
 
 class CustomUser(AbstractUser):
+    ACCOUNT_TYPES = [
+        ('free', 'Free'),
+        ('pro', 'Pro'),
+        ('premium', 'Premium'),
+    ]
+    account_type = models.CharField(
+        max_length=10,
+        choices=ACCOUNT_TYPES,
+        default='free'
+    )
+
+class CustomUser(AbstractUser):
     theme = models.CharField(max_length=20, default="light")
 
 class Poem(models.Model):

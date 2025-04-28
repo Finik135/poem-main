@@ -6,6 +6,35 @@ from django.contrib import messages
 from .forms import CreatePoemForm, CreateReviewPoemForm
 from django.contrib.auth.decorators import login_required
 from django.utils import timezone
+from django.shortcuts import render
+from .utils.decorators import require_pro, require_premium, require_account_type
+
+# Декоратор для Free акаунтів
+require_free = require_account_type('free')
+
+
+@require_free
+def only_for_free_users(request):
+    return render(request, 'free_feature.html')
+
+
+@require_pro
+def upload_image(request):
+    return render(request, 'upload.html')
+
+
+@require_premium
+def advanced_analytics(request):
+    return render(request, 'analytics.html')
+
+
+@require_pro
+def upload_image(request):
+    return render(request, 'upload.html')
+
+@require_premium
+def advanced_analytics(request):
+    return render(request, 'analytics.html')
 
 def index(request):
     theme = request.user.theme if request.user.is_authenticated else "light"
