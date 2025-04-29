@@ -38,13 +38,13 @@ def advanced_analytics(request):
 
 def index(request):
     theme = request.user.theme if request.user.is_authenticated else "light"
-    return render(request, 'index.html', {'theme': theme})
+    return render(request, 'poems/index.html', {'theme': theme})
 
 def index(request):
     theme = "lightre"
     if request.user.is_authenticated:
         theme = request.user.theme
-    return render(request, "index.html", {"theme": theme, "now": timezone.now()})
+    return render(request, "poems/index.html", {"theme": theme, "now": timezone.now()})
 
 def home(request):
     poems = Poem.objects.all()
@@ -106,3 +106,10 @@ def poem_detail(request, pk):
         "reviews": reviews
     }
     return render(request, 'poems/poem.html', context)
+
+from .utils.customizer import apply_theme
+from django.shortcuts import redirect
+
+def set_theme(request, theme_name):
+    apply_theme(request.user, theme_name)
+    return redirect('index')
